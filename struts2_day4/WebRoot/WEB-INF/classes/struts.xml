@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<!-- package:name:随意且唯一    extends:规定-->
+	<package name="day1" extends="struts-default">
+	<!-- 拦截器声明,告诉框架自己定义了一个拦截器 ；写在package里面，action之上-->
+		<interceptors>
+			<!-- 配置拦截器信息 name:拦截器名字随意且唯一  class:拦截器的位置 -->
+			<interceptor name="my1" class="com.baizhi.lan.MyInter"></interceptor>
+			<interceptor name="t" class="com.baizhi.lan.TInter"></interceptor>
+		</interceptors>
+	<!-- 中断请求配置 -->
+		<global-results>
+			<result name="zd">/zd.jsp</result>
+		</global-results>
+		
+		<!--练习拦截器Action -->
+		<action name="LianAction" class="com.baizhi.lan.LianAction">
+			<!-- 引用拦截器  name:已有拦截器的name属性值-->
+			<!-- 在需要被拦截的action中添加标签，使用对应的拦截器 -->
+			<interceptor-ref name="my1"></interceptor-ref>
+			<result name="aa">/index.jsp</result>
+		</action>
+		
+		<action name="a" class="com.baizhi.day4.AAction">
+			<interceptor-ref name="t"></interceptor-ref>
+			<result name="aok">/a.jsp</result>
+		</action>
+		
+		<action name="b" class="com.baizhi.day4.BAction">
+			<result name="bok">/b.jsp</result>
+		</action>
+		
+		<action name="c" class="com.baizhi.day4.CAction">
+			<result name="cok">/c.jsp</result>
+		</action>
+		
+		
+		
+		
+		<action name="loginAction" class="com.s.login">
+			<result name="ok">/ok.jsp</result>
+		</action>
+	</package>
+</struts>
